@@ -12,7 +12,7 @@ public class Task {
 
     public static void toIntensive(int i) throws InterruptedException {
         log.info("Starting I/O Task {}", i);
-        Thread.sleep(Duration.ofSeconds(10));
+        Thread.sleep(Duration.ofSeconds(60));
         log.info("Ending I/O Task {}", i);
     }
 }
