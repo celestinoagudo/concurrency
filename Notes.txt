@@ -1,0 +1,28 @@
+The Problem with Platform Threads:
+- Platform Threads = OS Threads
+- Each thread needs its own memory stack
+- Heavy and expensive to create.
+- OS limits how many you can run.
+- Not built for large scale concurrency.
+
+Virtual Threads
+- Lightweight and memory efficient.
+- enable massive concurrency
+
+Process
+- An instance of a computer program
+- includes code, resources (allocated by the OS like memory, sockets .. etc)
+- heavyweight
+
+Thread
+- part of the process: contains one or more threads, process is a unit of resources
+- threads within a process can share the memory space. Thread is a unit of execution
+
+OS Scheduler
+- assign the thread to CPU for execution, determines how long the tread should execute.
+
+CPU/Processor: can be used interchangeably, modern CPU comes with multiple cores, each core can be seen as a processor.
+
+Context Switch: Scheduler selects which thread to execute. When switching, the current thread's execution point's state has to be stored, so that it can be resume later from the point where it was stopped.
+
+Kernel Thread/OS Thread 
