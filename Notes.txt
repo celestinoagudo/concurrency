@@ -25,4 +25,23 @@ CPU/Processor: can be used interchangeably, modern CPU comes with multiple cores
 
 Context Switch: Scheduler selects which thread to execute. When switching, the current thread's execution point's state has to be stored, so that it can be resume later from the point where it was stopped.
 
-Kernel Thread/OS Thread 
+Kernel Thread/OS Thread
+
+Java (Platform) Thread
+- 1 Java Thread = 1 OS Thread
+- Remember: OS Thread is the unit of scheduling
+- Java Thread is a wrapper to the OS Thread.
+
+Stack memory: method specific local variables, function calls information should be stored somewhere
+	- Heap vs. Stack: Heap stores objects we dynamically create: ArrayList, Hasmap
+	- Stack contains: local variables, object references and function call information
+	- each thread has its own stack memory, the size of stack memory is determined when the process starts or thread is created. Given upfront, cannot be modified
+	- default 1 MB for every single thread, varies depending on the CPU architecture and the OS.
+	- whether thread is doing something or not, an appropriate memory is allocated.
+
+Where's the problem?
+- Microservices architecture: involves network calls, we're creating an expensive thread, but we're keeping it idle. The problem we're trying to solve with virtual threads.
+
+-Xss: stack size argument
+
+daemon thread: runs in the background 
