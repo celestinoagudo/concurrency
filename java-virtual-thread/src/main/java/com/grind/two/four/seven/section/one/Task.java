@@ -11,8 +11,8 @@ public class Task {
 
 
     public static void toIntensive(int i) throws InterruptedException {
-        log.info("Starting I/O Task {}", i);
-        Thread.sleep(Duration.ofSeconds(60));
-        log.info("Ending I/O Task {}", i);
+        log.info("Starting I/O Task {}, Thread Info: {}", i, Thread.currentThread());
+        Thread.sleep(Duration.ofSeconds(10));
+        log.info("Ending I/O Task {}, Thread Info: {}", i, Thread.currentThread());
     }
 }
