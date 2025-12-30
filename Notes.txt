@@ -44,4 +44,47 @@ Where's the problem?
 
 -Xss: stack size argument
 
-daemon thread: runs in the background 
+daemon thread: runs in the background
+
+Virtual Thread
+	- simply an illusion provided by Java
+		- it looks like a thread.
+		- it will accept a runnable
+		- we can do thread.start, thread.join
+		- but OS can't see them / schedule them.
+	- nothing is created in the OS level, tiny objects we create in the heap.
+	- see them as a task.
+	- when thread.start, all tasks will be added to a queue internally, cannot execute on its own and cannot be seen by the OS
+	- Fork Join pool - number of threads depends on the processor we have on our machine.
+	- platform thread gets the task from the queue and start executing 
+	- platform thread whenever sees blocking I/O task: network call, it will park the task and proceed to take remaining tasks from the queue, goal is platform thread should not be blocked. VT must be mounted on a Carrier thread to execute the task (mounting)
+	- when response comes back (to parked task), it will be put in the queue and resumes the execution where it was stopped.
+	- no guarantee that same carrier thread will process the same virtual thread from start to finish.
+	- Virtual threads do not have fixed stack; they have resizable stack: Stack Chunk Object.
+
+Virtual Thread Scheduler
+- platform threads are scheduled by the OS Scheduler
+- virtual threads are scheduled by the JVM
+	- dedicated forkjoinpool to schedule virtual threads
+		- core pool size: available processors.
+		- carrier threads will not be blocked during I/O
+- system properties:
+	- jdk.virtualThreadScheduler.parallelism=Runtime.getRuntime().availableProcessors();
+	- jdk.virtualThreadScheduler.maxPoolSize=256
+
+Scheduling Types
+- preeemtive - OS Scheduling policy
+	- CPU is allocated for a limited time.
+	- OS can forcibly pause a running thread to give CPU to another thread.
+	- based on thread prio, time slice, availability of ready to run threads
+	- priorities:
+		- low: 1
+		- 10: high
+		- 5: default
+	- note: preemptive scheduling behavior is platform dependent
+	- virtual threads have default priority: cannot be modified
+- cooperative
+	- CPU is allocated till the execution is completed.
+		- or thread should be willing to give CPU to another thread. Thread.yield
+	- execution is not interrupted/forcibly paused.
+	- if there's a long running thread/task, other threads might have to starve.
