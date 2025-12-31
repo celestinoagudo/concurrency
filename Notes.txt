@@ -92,3 +92,5 @@ Scheduling Types
 Synchronization
 - Mechanism to provide controlled access to shared resources/critical section of code in multi-threaded environment to prevent race conditions / data corruption
 - All applicable multi-thread related challenges like race conditions, dead-locks are still applicable for virtual threads.
+
+Thread Pinning
