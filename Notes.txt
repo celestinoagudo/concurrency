@@ -101,3 +101,16 @@ ReentrantLock: Fairness
 - works like synchronized, but provides more flexibility and control.
 - fairness policy: a thrad which has been waiting longer will get the chance to acquire the lock.
 - tryLock with timeout: max time for a thread to wait to acquire the lock.
+
+ExecutorService
+
+	High level concurrency framework
+		- thread management
+		- task management
+	- Executor: FI, ExecutorService an interface which extends Executor
+	- Executors: utility class with factory methods to create an instance of ExecutorService impl.
+	- VT are not supposed to be pooled
+		- Tasks
+		- VT is intended to be created on demand and discard once the task is done.
+	- Then what is the use of ExecutorService with VT?
+		- Thread per task creation management.
