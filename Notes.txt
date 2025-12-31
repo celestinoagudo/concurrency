@@ -88,3 +88,7 @@ Scheduling Types
 		- or thread should be willing to give CPU to another thread. Thread.yield
 	- execution is not interrupted/forcibly paused.
 	- if there's a long running thread/task, other threads might have to starve.
+
+Synchronization
+- Mechanism to provide controlled access to shared resources/critical section of code in multi-threaded environment to prevent race conditions / data corruption
+- All applicable multi-thread related challenges like race conditions, dead-locks are still applicable for virtual threads.
