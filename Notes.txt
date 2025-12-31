@@ -94,3 +94,10 @@ Synchronization
 - All applicable multi-thread related challenges like race conditions, dead-locks are still applicable for virtual threads.
 
 Thread Pinning
+- if a virtual thread enters synchronized method it cannot be unmounted until the synchronized section finishes. Or Native while executing native code.
+- this prevents the JVM from switching to another VT and reduces scalability.
+
+ReentrantLock: Fairness
+- works like synchronized, but provides more flexibility and control.
+- fairness policy: a thrad which has been waiting longer will get the chance to acquire the lock.
+- tryLock with timeout: max time for a thread to wait to acquire the lock.
