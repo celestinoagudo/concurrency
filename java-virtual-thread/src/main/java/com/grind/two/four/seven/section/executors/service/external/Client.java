@@ -31,4 +31,9 @@ public class Client {
             throw new RuntimeException(e);
         }
     }
+
+    public static void main(String[] args) {
+        final String product = getProduct(1);
+        log.info("Product: {}", product);
+    }
 }
