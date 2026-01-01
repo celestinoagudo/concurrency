@@ -136,3 +136,10 @@ ExecutorService challenges
 	- virtual threads
 		- thread per task executor
 	- VT: great for IO tasks to achieve non-blocking benefits behind the scenes. 
+
+Semaphore: behaves like ReentrantLock
+- Are these the same?
+	- Semaphore semaphore = new Semaphore(1);
+	- Lock lock = new ReentrantLock();
+- Lock: the thread which acquired the lock is supposed to unlock
+- Semaphore: Any thread can release the permit.
