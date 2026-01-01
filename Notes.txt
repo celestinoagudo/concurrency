@@ -114,3 +114,25 @@ ExecutorService
 		- VT is intended to be created on demand and discard once the task is done.
 	- Then what is the use of ExecutorService with VT?
 		- Thread per task creation management.
+
+ExecutorService Types
+	- Fixed Thread Pool: A TP with dedicated number of threads
+	- Single Thread Executor: execute tasks sequentially. A TP with single worker thread
+	- Cached thread pool: elastic TP. Create new thread on demand, reuse existing thread if available. Idle thread time is 1 min. Usage: unpredictable workload
+	- Scheduled TP: can be used to run at regular interval, call remote service every minute.
+	- Thread per task executor: creates new thread per task on demand. since: 21
+
+Are we supposed to use ExecutorService with try-with-resources always?
+	- it depends: if you're already using shutdown, then you can use try
+	- spring web / server applications, ExecutorService will be used throughout the application. We do not shutdown.
+
+Concurrency: dealing with multiple task over a period of time.
+Parallelism: we might want to breakdown a task into smaller multiple subtasks so that they can all be processed independently to achieve significant improvement in the performance.
+
+ExecutorService challenges
+- Executor Service
+	- Platform Threads
+		- single / fixed / cached / scheduled / fork-join-pool (for CPU tasks)
+	- virtual threads
+		- thread per task executor
+	- VT: great for IO tasks to achieve non-blocking benefits behind the scenes. 
