@@ -143,3 +143,13 @@ Semaphore: behaves like ReentrantLock
 	- Lock lock = new ReentrantLock();
 - Lock: the thread which acquired the lock is supposed to unlock
 - Semaphore: Any thread can release the permit.
+
+ExecutorService with Platform Threads:
+	- single / fixed / cached / scheduled / fork-join-pool
+	- these implementations pool threads.
+	- do not use VT factory.
+ExecutorService with VT
+	- single / fixed -> use semaphore + queue
+	- cached -> more or less same as thread per task
+	- scheduled -> use platform thread to schedule and virtual thread to execute
+	- fork join pool -> N/A
