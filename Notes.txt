@@ -156,3 +156,9 @@ ExecutorService with VT
 
 CompletableFuture by default uses Fork-join pool.
 	- it accepts an Executor. We can use virtual-thread-per-task executor.
+
+
+ThreadLocal
+- is like a locker / storage space for each thread.
+- each thread can store and access its value independent of other threads.
+- works with platform / virtual
