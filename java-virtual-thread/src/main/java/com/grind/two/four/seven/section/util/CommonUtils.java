@@ -1,5 +1,7 @@
 package com.grind.two.four.seven.section.util;
 
+import java.time.Duration;
+
 public class CommonUtils {
 
     private CommonUtils() {
@@ -10,5 +12,13 @@ public class CommonUtils {
         runnable.run();
         var end = System.currentTimeMillis();
         return end - start;
+    }
+
+    public static void sleep(Duration duration) {
+        try {
+            Thread.sleep(duration);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
