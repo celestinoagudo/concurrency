@@ -30,15 +30,15 @@ public class InheritableThreadLocalDemo {
         }
     }
 
+    private static void orderController() {
+        log.info("orderController: {}", sessionTokenHolder.get());
+        orderService();
+    }
+
     private static String authenticate() {
         var token = UUID.randomUUID().toString();
         log.info("token={}", token);
         return token;
-    }
-
-    private static void orderController() {
-        log.info("orderController: {}", sessionTokenHolder.get());
-        orderService();
     }
 
     private static void orderService() {
