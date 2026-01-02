@@ -153,3 +153,6 @@ ExecutorService with VT
 	- cached -> more or less same as thread per task
 	- scheduled -> use platform thread to schedule and virtual thread to execute
 	- fork join pool -> N/A
+
+CompletableFuture by default uses Fork-join pool.
+	- it accepts an Executor. We can use virtual-thread-per-task executor.
