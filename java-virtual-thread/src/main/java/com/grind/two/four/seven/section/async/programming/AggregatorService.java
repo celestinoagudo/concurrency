@@ -31,7 +31,7 @@ public class AggregatorService {
                 .exceptionally(_ -> "timeout while getting product!");
         var rating = CompletableFuture.supplyAsync(() -> Client.getRating(id), executorService)
                 .exceptionally(_ -> -1)
-                .orTimeout(1000, TimeUnit.MILLISECONDS)
+                .orTimeout(2000, TimeUnit.MILLISECONDS)
                 .exceptionally(_ -> -2);
         return new ProductDto(product.join(), rating.join());
     }
