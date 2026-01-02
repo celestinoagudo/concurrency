@@ -162,3 +162,27 @@ ThreadLocal
 - is like a locker / storage space for each thread.
 - each thread can store and access its value independent of other threads.
 - works with platform / virtual
+- No need to pass data through method calls
+	- Data that belongs to the entire thread's execution flow (request id, security context, txn context) can be stored in thread local and accessed anywhere in that thread.
+- Some objects are not thread safe and expensive to create
+	- ObjectMapper (older versions)
+	- synchronized can hurt performance.
+- Design flaws:
+	- mutable
+	- object in thread local maybe retained event not in use.
+		- fixed thread pool - 500
+	- child thread inheritance is expensive
+- should be used with static final - but people misuse.
+
+Is ThreadLocal bad?
+	- Problems arise when developers use it without discipline
+		- you must call the remove method
+		- the set method mutates the value, which can lead to unexpected behavior if different parts of the thread overwrite it.
+
+Golden Rules
+	- do not use the ThreadLocal directly. Always wrap it inside a helper / holder class.
+	- keep mutation methods private (package private)
+		- only trusted code call set() or remove()
+	- set and remove must always go together. Never set w/out removing.
+	- use ThreadLocal only for cross-cutting concerns / non-functional data
+		(e.g. security context, request metadata, tracing info.) 
