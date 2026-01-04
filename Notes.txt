@@ -186,3 +186,8 @@ Golden Rules
 	- set and remove must always go together. Never set w/out removing.
 	- use ThreadLocal only for cross-cutting concerns / non-functional data
 		(e.g. security context, request metadata, tracing info.) 
+
+Scoped Values
+- Safe, predictable, and efficient way to attach execution-scoped data without relying on developer discipline.
+- values are bound to the current thread just before the runnable (callable) starts.
+- values are unbound automatically when the runnable or callable completes (no manual cleanup needed)
