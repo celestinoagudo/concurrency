@@ -21,4 +21,11 @@ public class AuthenticationService {
         var securityContext = new SecurityContext(userId, USER_ROLES.getOrDefault(userId, UserRole.ANONYMOUS));
         ScopedValue.where(SecurityContextHolder.getScopedValue(), securityContext).run(runnable);
     }
+
+    public static void runAsAdmin(final Runnable runnable) {
+        var securityContext = SecurityContextHolder.getScopedValue()
+                .orElseThrow(() -> new SecurityException("Use is not authenticated!"));
+        var elevatedContext = new SecurityContext(securityContext.userId(), UserRole.ADMIN);
+        ScopedValue.where(SecurityContextHolder.getScopedValue(), elevatedContext).run(runnable);
+    }
 }
