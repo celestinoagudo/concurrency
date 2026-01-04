@@ -198,3 +198,17 @@ Rebinding
 	- after the scope ends, the original value is restored automatically.
 
 Carrier objects store the key value pair for the scoped values, the most recent setting will be assigned to the thread (latest key).
+
+ThreadLocal vs. ScopedValue
+- thread scoped 								| execution scoped (runnable / callable)
+- until thread dies or if value is removed     	| automatically removed when task ends
+- mutable 										| immutable
+- child inheritance is possible but expensive 	| possible via structured concurrency.
+
+Structured Concurrency
+- programming approach where a set of related subtasks, running in different threads are treated as a single unit, so their lifetimes, completion and errors are managed together.
+- StructuredTaskScope: used to handle structured concurrency
+
+Unstructured Concurrency
+- Executor Service
+- utility for managing a pool of threads and submitting tasks to them. Tasks are independent no built in relationship. We have to manually manage the lifecycle.
