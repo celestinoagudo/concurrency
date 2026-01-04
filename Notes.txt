@@ -191,3 +191,10 @@ Scoped Values
 - Safe, predictable, and efficient way to attach execution-scoped data without relying on developer discipline.
 - values are bound to the current thread just before the runnable (callable) starts.
 - values are unbound automatically when the runnable or callable completes (no manual cleanup needed)
+
+Rebinding
+- ScopedValues can be rebounded with a new value in a nested scope.
+	- outer value is temporarily replaced for the duration of the inner scope.
+	- after the scope ends, the original value is restored automatically.
+
+Carrier objects store the key value pair for the scoped values, the most recent setting will be assigned to the thread (latest key).
