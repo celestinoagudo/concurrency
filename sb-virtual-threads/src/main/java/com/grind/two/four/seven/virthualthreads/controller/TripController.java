@@ -15,14 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class TripController {
 
-    Logger logger = LoggerFactory.getLogger(TripController.class);
-
     private final TripPlanService planService;
     private final TripReservationService reservationService;
 
     @GetMapping("{airportCode}")
     public TripPlan planTrip(@PathVariable final String airportCode) {
-        logger.info("Is Virtual? {}", Thread.currentThread().isVirtual());
         return planService.getTripPlan(airportCode);
     }
 
