@@ -208,7 +208,25 @@ ThreadLocal vs. ScopedValue
 Structured Concurrency
 - programming approach where a set of related subtasks, running in different threads are treated as a single unit, so their lifetimes, completion and errors are managed together.
 - StructuredTaskScope: used to handle structured concurrency
+	- Step 1: Choose joiner strategy. Joiner is an interface that defines how subtasks complete. 
 
 Unstructured Concurrency
 - Executor Service
 - utility for managing a pool of threads and submitting tasks to them. Tasks are independent no built in relationship. We have to manually manage the lifecycle.
+
+Scalability
+- Ability of an applicaiton to handle increasing concurrent workloads by utilizing the available resources efficiently. Without sacrificing application response time.
+- How can I process 1000 requests concurrently in a server application?
+ - Increase the number of platform threads to 1000
+ 	- Needs memory allocation upfront
+ 	- Context Switch
+ - If we assume we have alot of I/O calls, the CPU might not be utilized, but increasing threads will consume memory
+ 	- cpu 10%
+ 	- memory 1GB
+ - factors that could affect the scalability of the application
+ 	- resources: cpu/memory/network/disk
+ 	- application design/arch: algo, DS and db query
+Throughput vs. Response Time
+	- throughput: number of requests a server can process per unit time (Nreq/sec)
+	- response time: time taken to process request
+	- inverse relationship
